@@ -1,0 +1,80 @@
+package br.com.connectai.ml.models.enums;
+
+public enum SpecialtiesEnum {
+    ACUPUNCTURE(0),
+    ALLERGY_AND_IMMUNOLOGY(1),
+    PATHOLOGICAL_ANATOMY(2),
+    ANESTHESIOLOGY(3),
+    CARDIOLOGY(4),
+    CARDIOVASCULAR_SURGERY(5),
+    HEAD_AND_NECK_SURGERY(6),
+    DIGESTIVE_SYSTEM_SURGERY(7),
+    GENERAL_SURGERY(8),
+    ONCOLOGICAL_SURGERY(9),
+    PEDIATRIC_SURGERY(10),
+    THORACIC_SURGERY(11),
+    VASCULAR_SURGERY(12),
+    INTERNAL_MEDICINE(13),
+    COLOPROCTOLOGY(14),
+    DERMATOLOGY(15),
+    ENDOCRINOLOGY_AND_METABOLOGY(16),
+    GASTROENTEROLOGY(17),
+    GERIATRICS(18),
+    GYNECOLOGY(19),
+    GYNECOLOGY_AND_OBSTETRICS(20),
+    INTERVENTIONAL_CARDIOLOGY(21),
+    HEMATOLOGY(22),
+    HEMODYNAMICS(23),
+    HOMEOPATHY(24),
+    INFECTOLOGY(25),
+    MASTOLOGY(26),
+    EMERGENCY_MEDICINE(27),
+    FAMILY_AND_COMMUNITY_MEDICINE(28),
+    OCCUPATIONAL_MEDICINE(29),
+    PHYSICAL_MEDICINE_AND_REHABILITATION(30),
+    INTENSIVE_CARE_MEDICINE(31),
+    NUCLEAR_MEDICINE(32),
+    NEPHROLOGY(33),
+    PEDIATRIC_NEPHROLOGY(34),
+    NEUROSURGERY(35),
+    NEUROLOGY(36),
+    CLINICAL_NEUROLOGY(37),
+    PEDIATRIC_NEUROLOGY(38),
+    NUTROLOGY(39),
+    OBSTETRICS(40),
+    OPHTHALMOLOGY(41),
+    CLINICAL_ONCOLOGY(42),
+    PEDIATRIC_ONCOLOGY(43),
+    ORTHOPEDICS_AND_TRAUMATOLOGY(44),
+    OTORHINOLARYNGOLOGY(45),
+    PEDIATRICS(46),
+    ON_CALL_PEDIATRICS(47),
+    PULMONOLOGY(48),
+    PEDIATRIC_PULMONOLOGY(49),
+    PULMONOLOGY_AND_PHTHISIOLOGY(50),
+    PSYCHIATRY(51),
+    RADIOLOGY(52),
+    RADIOLOGY_AND_DIAGNOSTIC_IMAGING(53),
+    RADIOTHERAPY(54),
+    RHEUMATOLOGY(55),
+    UROLOGY(56);
+
+    private final int code;
+
+    SpecialtiesEnum(int code) {
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public static SpecialtiesEnum fromCode(int code) {
+        for (SpecialtiesEnum specialty : values()) {
+            if (specialty.code == code) {
+                return specialty;
+            }
+        }
+        throw new IllegalArgumentException("Invalid code: " + code);
+    }
+}

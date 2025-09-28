@@ -1,0 +1,61 @@
+1. Informações Básicas de Perfil
+
+Em que cidade você mora?
+Área profissional/setor que atua?
+
+2. Personalidade e Comportamento Social
+
+Como você se descreveria em eventos?
+
+ [ ]Extrovertido(a) - adoro conhecer pessoas novas
+ [ ]Introvertido(a) - prefiro grupos menores
+ [ ]Equilibrado(a) - depende da situação
+
+
+O que mais te motiva a ir a eventos?
+
+ Networking profissional
+ Conhecer pessoas para amizade
+ Interesse romântico
+ Aprender algo novo
+ Diversão e entretenimento
+
+
+
+3. Interesses e Hobbies
+
+Quais seus principais interesses? (múltipla escolha)
+
+ [ ] Música, [ ] Arte, [ ] Esportes, [ ] Tecnologia
+ [ ] Viagens, [ ] Gastronomia, [ ] Literatura, [ ] Cinema
+ [ ] Empreendedorismo, [ ] Sustentabilidade, [ ] Tecnologia
+
+
+Que tipo de música você mais curte?
+ [ ] Pop,  [ ] Funk,  [ ] Sertanejo,  [ ] Rock
+ [ ] Indie,  [ ] Eletrônica,  [ ] MPB
+Pratica algum esporte ou atividade física? - boolean
+
+4. Estilo de Vida
+
+Como costuma ser seu fim de semana ideal?
+Prefere atividades durante o dia ou à noite?  - text
+Bebe álcool socialmente? - boolean
+É fumante? - boolean
+Tem animais de estimação? - boolean
+
+5. Objetivos de Conexão
+
+O que você busca neste evento? (múltipla escolha)
+
+ [ ]Fazer networking
+ [ ]Conhecer pessoas com interesses similares
+ [ ]Encontrar potenciais parceiros de negócio
+ [ ]Fazer novas amizades
+
+
+Prefere conversar com pessoas:
+
+ [ ]Do mesmo perfil profissional
+ [ ]De áreas diferentes da sua
+ [ ]Tanto faz
