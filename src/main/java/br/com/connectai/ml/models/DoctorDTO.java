@@ -2,7 +2,7 @@ package br.com.connectai.ml.models;
 
 import java.util.Date;
 
-public class DoctorSimilarityPrediction {
+public class DoctorDTO {
     private Integer id;
     private String email;
     private int specialtyId;
@@ -12,13 +12,18 @@ public class DoctorSimilarityPrediction {
     private Date createdAt;
     private Date updatedAt;
     private Date deletedAt;
-    private double probability;
-
-    public DoctorSimilarityPrediction() {
-    }
+    private double rating;
 
     public Integer getId() {
         return id;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public void setId(Integer id) {
@@ -87,13 +92,5 @@ public class DoctorSimilarityPrediction {
 
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
-    }
-
-    public double getProbability() {
-        return probability;
-    }
-
-    public void setProbability(double probability) {
-        this.probability = probability;
     }
 }

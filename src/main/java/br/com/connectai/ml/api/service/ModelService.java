@@ -209,7 +209,7 @@ public class ModelService {
                         anchorInstance, currentUserInstance, maxPossibleDistance);
 
                 DoctorSimilarityPrediction prediction = new DoctorSimilarityPrediction();
-                prediction.setDoctorId(doctor.getId());
+                prediction.setId(doctor.getId());
                 prediction.setProbability(similarityPercentage);
                 predictions.add(prediction);
                 // Usuários de outros clusters são ignorados (não aparecem na lista)
@@ -337,5 +337,67 @@ public class ModelService {
             sum += diff * diff;
         }
         return Math.sqrt(sum);
+    }
+
+    public List<DoctorSimilarityPrediction> getTopMatches2(int patientId, int n, List<Doctor> doctors) {
+        List<DoctorSimilarityPrediction> predictions = new ArrayList<>();
+
+        // 1. Carregar modelo e estrutura
+        SimpleKMeans model = loadModel();
+        Instances instances = loadDatasetStructure();
+
+        // 2. Criar instância do usuário âncora
+        Patient anchorPatient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new IllegalArgumentException("Usuário âncora não encontrado"));
+        Instance anchorInstance = createInstanceForPatient(anchorPatient, instances);
+
+        anchorInstance.setDataset(instances);
+
+        // 3. Descobrir cluster do usuário âncora
+        int anchorCluster;
+        try {
+            anchorCluster = model.clusterInstance(anchorInstance);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // 5. Filtrar doutores do MESMO CLUSTER + calcular similaridade
+        double maxPossibleDistance = calculateMaxDistance(instances);
+
+        int finalAnchorCluster = anchorCluster;
+        doctors.forEach(doctor -> {
+            Instance currentUserInstance = createInstanceForDoctor(doctor, instances);
+            currentUserInstance.setDataset(instances);
+            try {
+                int userCluster = model.clusterInstance(currentUserInstance);
+
+                // Só processar se estiver no mesmo cluster
+                double similarityPercentage = calculateSimilarityPercentage(
+                        anchorInstance, currentUserInstance, maxPossibleDistance);
+
+                DoctorSimilarityPrediction prediction = new DoctorSimilarityPrediction();
+                prediction.setId(doctor.getId());
+                prediction.setProbability(similarityPercentage);
+                prediction.setActive(doctor.getActive());
+                prediction.setCrm(doctor.getCrm());
+                prediction.setEmail(doctor.getEmail());
+                prediction.setCreatedAt(doctor.getCreatedAt());
+                prediction.setUpdatedAt(doctor.getUpdatedAt());
+                prediction.setName(doctor.getName());
+                prediction.setSpecialtyId(SpecialtiesEnum.valueOf(doctor.getSpecialty()).getCode());
+                prediction.setDeletedAt(doctor.getDeletedAt());
+                predictions.add(prediction);
+                // Usuários de outros clusters são ignorados (não aparecem na lista)
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // 6. Ordenar e retornar top N
+        return predictions.stream()
+                .sorted((a, b) -> Double.compare(b.getProbability(), a.getProbability()))
+                .limit(n)
+                .collect(Collectors.toList());
     }
 }
